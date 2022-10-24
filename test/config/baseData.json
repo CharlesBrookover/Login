@@ -1,0 +1,25 @@
+{
+  "dbFile": "/tmp/testLogin.db",
+  "tables": {
+    "users":   {
+      "sql": "insert into users (email, firstName, lastName, city, age) values (:email, :firstName, :lastName, :city, :age)",
+      "data": [
+      {
+        "email":     "pagan_savalaeam@may.bkb",
+        "firstName": "Sudeep",
+        "lastName":  "Shericka",
+        "city":      "Emigrant",
+        "age":       572
+      }
+    ]},
+    "users_auth": {
+      "sql": "insert into users_auth (email, password) values (:email, :password)",
+      "data": [
+        {
+          "email":    "pagan_savalaeam@may.bkb",
+          "password": "W8gSL9PlCobqR037EmVVT"
+        }
+      ]
+    }
+  }
+}

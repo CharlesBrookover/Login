@@ -1,0 +1,31 @@
+{
+  "name":              "landfillsoft/login",
+  "description":       "Login pages making use of various PHP frameworks and front-end methods",
+  "minimum-stability": "stable",
+  "license":           "proprietary",
+  "authors":           [
+    {
+      "name":  "Charles Brookover",
+      "email": "charlesbrookover@gmail.com",
+      "role":  "Developer"
+    }
+  ],
+  "autoload":     {
+    "psr-4": {
+      "Local\\": "src/lib/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Local\\Tests\\": "test/"
+    }
+  },
+  "require":           {
+    "php":         ">=8.1",
+    "ext-pdo":     "*",
+    "ext-sqlite3": "*"
+  },
+  "require-dev":       {
+    "phpunit/phpunit": "^9.5"
+  }
+}

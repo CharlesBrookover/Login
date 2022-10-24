@@ -1,0 +1,13 @@
+{
+  "DataSourceFactoryTest": {
+    "datasources": [
+      {
+        "driver": "sqlite",
+        "host": "/tmp/testLogin.db",
+        "database": null,
+        "username": null,
+        "password": null
+      }
+    ]
+  }
+}
