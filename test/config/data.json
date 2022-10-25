@@ -2,11 +2,57 @@
   "DataSourceFactoryTest": {
     "datasources": [
       {
-        "driver": "sqlite",
-        "host": "/tmp/testLogin.db",
+        "driver":   "sqlite",
+        "host":     "testLogin.db",
         "database": null,
         "username": null,
         "password": null
+      }
+    ],
+    "select":      [
+      {
+        "table":  "users",
+        "query":  "select * from users",
+        "entity": "\\Local\\Entities\\User"
+      },
+      {
+        "table":  "users_auth",
+        "query":  "select * from users_auth",
+        "entity": "\\Local\\Entities\\UserAuth"
+      }
+    ],
+    "insert":      [
+      {
+        "table":     "users",
+        "query":     "insert into users (email, firstName, lastName, city, age) values (:email, :firstName, :lastName, :city, :age)",
+        "data":      {
+          "email":     "jeronimo_denisuh@hate.evi",
+          "firstName": "Dwyane",
+          "lastName":  "Annica",
+          "city":      "Rosemary Bch",
+          "age":       53
+        },
+        "dataTypes": {
+          "age": "PDO::PARAM_INT"
+        }
+      },
+      {
+        "table": "users_auth",
+        "query": "insert into users_auth (email, password) values (:email, :password)",
+        "data":  {
+          "email":    "jeronimo_denisuh@hate.evi",
+          "password": "wyd41PA6A8TkOL1TnqWl2M"
+        }
+      }
+    ],
+    "delete":      [
+      {
+        "table": "users",
+        "query": "delete from users where rowid = ?"
+      },
+      {
+        "table": "users_auth",
+        "query": "delete from users_auth where rowid = ?"
       }
     ]
   }

@@ -11,8 +11,6 @@
 
 namespace Local\DataSource;
 
-use Local\Entities\IDataEntities;
-
 interface IDataSource
 {
     public function __construct(string $host, ?string $database, ?string $username, ?string $password);
@@ -20,15 +18,4 @@ interface IDataSource
     public function connect()
     : \PDO;
 
-    public function select(string $table, array $where, ?IDataEntities $dataModel = null, array $dataTypes = [])
-    : iterable;
-
-    public function insert(string $table, array $data, array $dataTypes = [])
-    : int;
-
-    public function delete(string $table, array $where, array $dataTypes = [])
-    : int;
-
-    public function numOfRows(string $table, array $where, array $dataTypes = [])
-    : int;
 }

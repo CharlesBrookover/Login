@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Local\Entities;
 
-class Users implements IDataEntities
+class User implements IDataEntities
 {
-    protected string $email;
-    protected string $firstName;
-    protected string $lastName;
-    protected string $city;
-    protected int    $age;
-    protected int    $inserted;
-    protected int    $updated;
+    protected string          $email;
+    protected string          $firstName;
+    protected string          $lastName;
+    protected string          $city;
+    protected int             $age;
+    protected string|int|null $inserted;
+    protected string|int|null $updated;
 
     /**
      * @return string
@@ -109,35 +109,39 @@ class Users implements IDataEntities
     }
 
     /**
-     * @return int
+     * @return \DateTimeImmutable
+     * @throws \Exception
      */
     public function getInserted()
-    : int
+    : \DateTimeImmutable
     {
-        return $this->inserted;
+        return new \DateTimeImmutable($this->inserted);
     }
 
     /**
-     * @param int $inserted
+     * @param string|int|null $inserted
+     *
      */
-    public function setInserted(int $inserted)
+    public function setInserted(string|int|null $inserted)
     : void {
         $this->inserted = $inserted;
     }
 
     /**
-     * @return int
+     * @return \DateTimeImmutable
+     * @throws \Exception
      */
     public function getUpdated()
-    : int
+    : \DateTimeImmutable
     {
-        return $this->updated;
+        return new \DateTimeImmutable($this->updated);
     }
 
     /**
-     * @param int $updated
+     * @param string|int|null $updated
+     *
      */
-    public function setUpdated(int $updated)
+    public function setUpdated(string|int|null $updated)
     : void {
         $this->updated = $updated;
     }

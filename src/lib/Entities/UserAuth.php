@@ -13,13 +13,13 @@ declare(strict_types=1);
 
 namespace Local\Entities;
 
-class UsersAuth implements IDataEntities
+class UserAuth implements IDataEntities
 {
 
-    protected string $email;
-    protected string $password;
-    protected int    $created;
-    protected int    $lastChanged;
+    protected string          $email;
+    protected string          $password;
+    protected int|string|null $created;
+    protected int|string|null $lastChanged;
 
     /**
      * @return string
@@ -56,35 +56,37 @@ class UsersAuth implements IDataEntities
     }
 
     /**
-     * @return int
+     * @return \DateTimeImmutable
+     * @throws \Exception
      */
     public function getCreated()
-    : int
+    : \DateTimeImmutable
     {
-        return $this->created;
+        return new \DateTimeImmutable($this->created);
     }
 
     /**
-     * @param int $created
+     * @param int|string|null $created
      */
-    public function setCreated(int $created)
+    public function setCreated(int|string|null $created)
     : void {
         $this->created = $created;
     }
 
     /**
-     * @return int
+     * @return \DateTimeImmutable
+     * @throws \Exception
      */
     public function getLastChanged()
-    : int
+    : \DateTimeImmutable
     {
-        return $this->lastChanged;
+        return new \DateTimeImmutable($this->lastChanged);
     }
 
     /**
-     * @param int $lastChanged
+     * @param int|string|null $lastChanged
      */
-    public function setLastChanged(int $lastChanged)
+    public function setLastChanged(int|string|null $lastChanged)
     : void {
         $this->lastChanged = $lastChanged;
     }

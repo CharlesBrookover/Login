@@ -1,3 +1,9 @@
 {
-
+  "datasources": [
+    {
+      "driver":  "sqlite",
+      "host":    "%PROJECT_PATH%/resources/db/testLogin.db",
+      "sqlFile": "%PROJECT_PATH%/build/sqlite.sql"
+    }
+  ]
 }
