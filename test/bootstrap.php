@@ -14,7 +14,8 @@ declare(strict_types=1);
 use Local\Helper;
 
 defined('TEST_PATH') or define('TEST_PATH', realpath(dirname(__FILE__)));
-defined('TEST_DATA') or define('TEST_DATA',  json_decode(file_get_contents(TEST_PATH . '/config/data.json'), true));
+defined('PROJECT_PATH') or define('PROJECT_PATH', TEST_PATH . '/..');
+defined('TEST_DATA') or define('TEST_DATA', json_decode(file_get_contents(TEST_PATH . '/config/data.json'), true));
 
 $config   = json_decode(file_get_contents(TEST_PATH . '/config/config.test.json'), true);
 $baseData = json_decode(file_get_contents(TEST_PATH . '/config/baseData.json'), true);
@@ -31,15 +32,19 @@ buildTestDb($baseData);
  */
 function buildTestDb(array $data)
 : void {
-    $dbFile = $data['dbFile'] ?? ':memory:';
-    if (file_exists($dbFile)) {
-        unlink($dbFile);
+    if (isset($data['dbFile'])) {
+        $dbFile = str_replace('%PROJECT_PATH%', PROJECT_PATH, $data['dbFile']);
+        if (file_exists($dbFile)) {
+            unlink($dbFile);
+        }
+    } else {
+        $dbFile = ':memory:';
     }
 
     // Create DB
     $sqlite = new \SQLite3($dbFile);
     // Create tables in DB
-    $createSql = file_get_contents(TEST_PATH . '/../build/database.sql');
+    $createSql = file_get_contents(PROJECT_PATH . '/build/database.sql');
     $sqlite->exec($createSql);
 
     foreach ($data['tables'] ?? [] as $table => $info) {
@@ -58,4 +63,5 @@ function buildTestDb(array $data)
         $stmt->close();
     }
 }
+
 

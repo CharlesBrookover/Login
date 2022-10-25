@@ -1,15 +1,15 @@
 {
-  "dbFile": "/tmp/testLogin.db",
+  "dbFile": "%PROJECT_PATH%/resources/db/testLogin.db",
   "tables": {
-    "users":   {
-      "sql": "insert into users (email, firstName, lastName, city, age) values (:email, :firstName, :lastName, :city, :age)",
+    "users":      {
+      "sql":  "insert into users (email, firstName, lastName, city, age) values (:email, :firstName, :lastName, :city, :age)",
       "data": [
-      {
-        "email":     "pagan_savalaeam@may.bkb",
-        "firstName": "Sudeep",
-        "lastName":  "Shericka",
-        "city":      "Emigrant",
-        "age":       572
+        {
+          "email":     "pagan_savalaeam@may.bkb",
+          "firstName": "Sudeep",
+          "lastName":  "Shericka",
+          "city":      "Emigrant",
+          "age":       572
       }
     ]},
     "users_auth": {
