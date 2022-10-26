@@ -1,14 +1,14 @@
 {
   "DataSourceFactoryTest": {
-    "datasources": [
-      {
+    "datasources": {
+      "sqlite": {
         "driver":   "sqlite",
         "host":     "testLogin.db",
         "database": null,
         "username": null,
         "password": null
       }
-    ],
+    },
     "select":      [
       {
         "table":  "users",
@@ -55,5 +55,19 @@
         "query": "delete from users_auth where rowid = ?"
       }
     ]
+  },
+  "UserManagerTest":       {
+    "users": {
+      "User 1": {
+        "email":    "arjuna_layfieldvr@forecasts.bqt",
+        "password": "CxqOzchbuPtjntUd",
+        "data":     {
+          "firstName": "Ronelle",
+          "lastName":  "Bryce",
+          "city":      "Bethel Park",
+          "age":       79866
+        }
+      }
+    }
   }
 }
