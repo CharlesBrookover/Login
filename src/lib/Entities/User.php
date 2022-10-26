@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * A new PHP page
+ * User Entity
  *
  * Date: 10/16/2022
  *
@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Local\Entities;
 
-class User implements IDataEntities
+class User implements IEntities
 {
     protected string          $email;
     protected string          $firstName;
@@ -109,41 +109,38 @@ class User implements IDataEntities
     }
 
     /**
-     * @return \DateTimeImmutable
-     * @throws \Exception
+     * @return int|string|null
      */
     public function getInserted()
-    : \DateTimeImmutable
+    : int|string|null
     {
-        return new \DateTimeImmutable($this->inserted);
+        return $this->inserted;
     }
 
     /**
-     * @param string|int|null $inserted
-     *
+     * @param int|string|null $inserted
      */
-    public function setInserted(string|int|null $inserted)
+    public function setInserted(int|string|null $inserted)
     : void {
         $this->inserted = $inserted;
     }
 
     /**
-     * @return \DateTimeImmutable
-     * @throws \Exception
+     * @return int|string|null
      */
     public function getUpdated()
-    : \DateTimeImmutable
+    : int|string|null
     {
-        return new \DateTimeImmutable($this->updated);
+        return $this->updated;
     }
 
     /**
-     * @param string|int|null $updated
-     *
+     * @param int|string|null $updated
      */
-    public function setUpdated(string|int|null $updated)
+    public function setUpdated(int|string|null $updated)
     : void {
         $this->updated = $updated;
     }
+
 
 }

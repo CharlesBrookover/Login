@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Local\Entities;
 
-interface IDataEntities
+interface IEntities
 {
 
 }

@@ -16,8 +16,9 @@ create table users_auth
 (
     email       TEXT not null,
     password    TEXT not null,
+    created     INTEGER default CURRENT_TIMESTAMP,
     lastChanged INTEGER,
-    created     INTEGER default CURRENT_TIMESTAMP
+    lastLogin   INTEGER
 );
 
 create unique index email_auth_index

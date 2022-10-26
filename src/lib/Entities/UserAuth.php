@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * A new PHP page
+ * User Auth Entity
  *
  * Date: 10/16/2022
  *
@@ -13,13 +13,14 @@ declare(strict_types=1);
 
 namespace Local\Entities;
 
-class UserAuth implements IDataEntities
+class UserAuth implements IEntities
 {
 
     protected string          $email;
     protected string          $password;
     protected int|string|null $created;
     protected int|string|null $lastChanged;
+    protected int|string|null $lastLogin;
 
     /**
      * @return string
@@ -56,13 +57,12 @@ class UserAuth implements IDataEntities
     }
 
     /**
-     * @return \DateTimeImmutable
-     * @throws \Exception
+     * @return int|string|null
      */
     public function getCreated()
-    : \DateTimeImmutable
+    : int|string|null
     {
-        return new \DateTimeImmutable($this->created);
+        return $this->created;
     }
 
     /**
@@ -74,13 +74,12 @@ class UserAuth implements IDataEntities
     }
 
     /**
-     * @return \DateTimeImmutable
-     * @throws \Exception
+     * @return int|string|null
      */
     public function getLastChanged()
-    : \DateTimeImmutable
+    : int|string|null
     {
-        return new \DateTimeImmutable($this->lastChanged);
+        return $this->lastChanged;
     }
 
     /**
@@ -89,6 +88,23 @@ class UserAuth implements IDataEntities
     public function setLastChanged(int|string|null $lastChanged)
     : void {
         $this->lastChanged = $lastChanged;
+    }
+
+    /**
+     * @return int|string|null
+     */
+    public function getLastLogin()
+    : int|string|null
+    {
+        return $this->lastLogin;
+    }
+
+    /**
+     * @param int|string|null $lastLogin
+     */
+    public function setLastLogin(int|string|null $lastLogin)
+    : void {
+        $this->lastLogin = $lastLogin;
     }
 
 
