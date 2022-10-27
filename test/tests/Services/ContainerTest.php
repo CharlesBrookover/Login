@@ -13,22 +13,21 @@ declare(strict_types=1);
 
 namespace Local\Test\Services;
 
-use Local\Services\Config;
 use Local\Services\Container;
+use Local\Test\Build\Helpers;
 use PHPUnit\Framework\TestCase;
 
 class ContainerTest extends TestCase
 {
 
     private static Container $container;
-    private static string    $testConfigFile = TEST_PATH . '/data/config.json';
 
     public static function setUpBeforeClass()
     : void
     {
         parent::setUpBeforeClass();
 
-        self::$container = new Container(new Config(self::$testConfigFile));
+        self::$container = Helpers::createContainer();
     }
 
     public function testGetPdo()

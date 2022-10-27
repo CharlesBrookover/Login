@@ -25,7 +25,7 @@ class DataSourceFactoryTest extends TestCase
     public function datasourceConfig()
     : array
     {
-        $dbSetup = new DbSetup(new Config(CONFIG_FILE));
+        $dbSetup = new DbSetup(new Config(BUILD_CONFIG_FILE));
         return $dbSetup->getDatasource() ?? [];
     }
 

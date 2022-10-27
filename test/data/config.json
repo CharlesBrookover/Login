@@ -1,8 +1,0 @@
-{
-  "databases": {
-    "main": {
-      "driver": "sqlite",
-      "host": "%PROJECT_PATH%/resources/db/testLogin.db"
-    }
-  }
-}

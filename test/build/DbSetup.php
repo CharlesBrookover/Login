@@ -30,8 +30,10 @@ class DbSetup
         }
     }
 
-    public function buildDb(array $datasources)
-    : void {
+    public function buildDb()
+    : void
+    {
+        $datasources = $this->config->offsetGet('datasources');
         foreach ($datasources as $datasource => $details) {
             switch ($datasource) {
                 case 'sqlite':

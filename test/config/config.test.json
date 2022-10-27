@@ -1,8 +1,8 @@
 {
-  "datasources": {
-    "sqlite": {
-      "file":    "%PROJECT_PATH%/resources/db/testLogin.db",
-      "sqlFile": "%PROJECT_PATH%/build/sqlite.sql"
+  "databases": {
+    "main": {
+      "driver": "sqlite",
+      "host":   "%PROJECT_PATH%/resources/db/testLogin.db"
     }
   }
 }
