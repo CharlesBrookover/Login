@@ -13,18 +13,16 @@ declare(strict_types=1);
  */
 
 use Local\Services\Config;
+use Local\Services\Container;
 
-defined('SRC_PATH') or define('SRC_PATH', realpath(dirname(__FILE__)));
-defined('LIBRARY_PATH') or define('LIBRARY_PATH', realpath(SRC_PATH . '/../vendor'));
-defined('DB_PATH') or define('DB_PATH', realpath(SRC_PATH . '/../resources'));
-defined('CONFIG_PATH') or define('CONFIG_PATH', realpath(SRC_PATH . '/../config'));
+defined('PROJECT_PATH') or define('PROJECT_PATH', realpath(dirname(__FILE__) . '/..'));
 
-require_once LIBRARY_PATH . '/autoload.php';
+require_once PROJECT_PATH . '/vendor/autoload.php';
 
-$config = new Config(realpath(CONFIG_PATH . '/config.json'));
+$config = new Config(realpath(PROJECT_PATH . '/config/config.json'));
 if (getenv('SYS_PRODUCTION') === 'true') {
-    $config->merge(CONFIG_PATH . '/config.prod.json');
+    $config->merge(PROJECT_PATH . '/config//config.prod.json');
 }
 
-$container = new \Local\Services\Container($config);
+$container = new Container($config);
 

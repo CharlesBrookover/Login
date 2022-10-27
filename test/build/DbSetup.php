@@ -50,7 +50,7 @@ class DbSetup
         if (empty($file)) {
             $dbFile = ':memory:';
         } else {
-            $dbFile = $this->expandPath($file);
+            $dbFile = Helpers::expandPath($file);
             if (file_exists($dbFile)) {
                 unlink($dbFile);
             }
@@ -61,29 +61,17 @@ class DbSetup
 
         // Create tables in DB
         if (!empty($sqlFile)) {
-            $sql       = $this->expandPath($sqlFile);
+            $sql       = Helpers::expandPath($sqlFile);
             $createSql = file_get_contents($sql);
             $sqlite->exec($createSql);
         }
-    }
-
-    protected function expandPath(string $path)
-    : string {
-        preg_match_all('/%(?<constant>[A-Z_]+)?%/', $path, $matches, PREG_PATTERN_ORDER);
-
-        $newPath = '';
-        foreach ($matches['constant'] as $constant) {
-            $newPath = preg_replace('/%' . $constant . '%/', constant($constant), $path);
-        }
-
-        return empty($newPath) ? $path : $newPath;
     }
 
     protected function buildDatasource(string $driver, array $config = [])
     : array {
         return [
             'driver'   => $driver,
-            'host'     => $driver === 'sqlite' ? $this->expandPath($config['file'] ?? '') : $config['host'] ?? '',
+            'host'     => $driver === 'sqlite' ? Helpers::expandPath($config['file'] ?? '') : $config['host'] ?? '',
             'database' => $config['database'] ?? null,
             'username' => $config['username'] ?? null,
             'password' => $config['password'] ?? null,

@@ -13,7 +13,27 @@ declare(strict_types=1);
 
 namespace Local\Services;
 
+use Local\Database\DataSourceFactory;
+
 class Container
 {
+    protected \PDO $pdo;
+
+    public function __construct(protected Config $configuration) { }
+
+    public function getPdo()
+    : \PDO
+    {
+        if (empty($this->pdo)) {
+            $dbConfig  = $this->configuration->offsetGet('databases.main');
+            $factory   = new DataSourceFactory($dbConfig['driver'] ?? '');
+            $this->pdo = $factory->connect($dbConfig['host'] ?? '',
+                                           $dbConfig['database'] ?? null,
+                                           $dbConfig['username'] ?? null,
+                                           $dbConfig['password'] ?? null);
+        }
+
+        return $this->pdo;
+    }
 
 }

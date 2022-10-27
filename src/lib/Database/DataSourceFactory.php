@@ -48,7 +48,7 @@ class DataSourceFactory
              * @todo Add other data sources
              */
             $factory = match ($this->driver) {
-                'sqlite' => new Sqlite($host),
+                'sqlite' => new Sqlite((defined('PROJECT_PATH') ? PROJECT_PATH : '') . $host),
             };
 
             $this->conn = $factory->connect();
