@@ -20,18 +20,11 @@ class DataSourceFactory
     private \PDO    $conn;
 
     /**
-     * @param string      $driver
-     * @param string      $host
-     * @param string|null $database
-     * @param string|null $username
-     * @param string|null $password
-     *
-     * @throws \Throwable
+     * @param string $driver
      */
-    public function __construct(string $driver, string $host, ?string $database = null, ?string $username = null, ?string $password = null)
+    public function __construct(string $driver)
     {
         $this->setDriver($driver);
-        $this->conn = $this->connect($host, $database, $username, $password);
     }
 
     public function setDriver(string $name)
@@ -49,72 +42,22 @@ class DataSourceFactory
      */
     public function connect(string $host, ?string $database, ?string $username, ?string $password)
     : \PDO {
-        /**
-         * @todo Add other data sources
-         */
-        $db = match ($this->driver) {
-            default => new Sqlite($host),
-        };
+        if (empty($conn)) {
+            /**
+             * @todo Add other data sources
+             */
+            $factory = match ($this->driver) {
+                'sqlite' => new Sqlite($host),
+            };
 
-        return $db->connect();
-    }
-
-    public function select(string $entity, string $query, array $data = [], array $dataTypes = [])
-    : \ArrayIterator {
-        $stmt = $this->conn->prepare($query);
-        $this->bindValues($stmt, $data, $dataTypes);
-
-        $stmt->execute();
-        $return = $stmt->fetchAll(\PDO::FETCH_CLASS, $entity);
-        return new \ArrayIterator($return);
-    }
-
-    public function insert(string $query, array $data = [], array $dataTypes = [])
-    : int {
-        $stmt = $this->conn->prepare($query);
-        $this->bindValues($stmt, $data, $dataTypes);
-
-        $stmt->execute();
-
-        return $stmt->rowCount();
-    }
-
-    public function delete(string $query, array $data = [], array $dataTypes = [])
-    : int {
-        $stmt = $this->conn->prepare($query);
-        $this->bindValues($stmt, $data, $dataTypes);
-
-        $stmt->execute();
-
-        return $stmt->rowCount();
-    }
-
-    public function recordCount(string $table, array $where = [], array $data = [], array $dataTypes = [])
-    : int {
-        $query = sprintf('select * from %s', $table);
-        if (!empty($where)) {
-            $query .= sprintf(' where %s', join(' AND ', $where));
+            $this->conn = $factory->connect();
         }
-
-        $results = $this->select(\stdClass::class, $query, $data, $dataTypes);
-        return $results->count();
+        return $this->conn;
     }
 
-    public function getLastInsertId()
-    : string
+    public function getPdo()
+    : \PDO
     {
-        return $this->conn->lastInsertId();
-    }
-
-    protected function bindValues(\PDOStatement &$statement, array $data, array $dataTypes = [])
-    : void {
-        foreach ($data as $name => $value) {
-            $placeHolder = is_int($name) ? $name + 1 : $name;
-            if (isset($dataTypes[$name])) {
-                $statement->bindValue($placeHolder, $value, $dataTypes[$name]);
-            } else {
-                $statement->bindValue($placeHolder, $value);
-            }
-        }
+        return $this->conn;
     }
 }

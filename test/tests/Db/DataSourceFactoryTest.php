@@ -34,10 +34,14 @@ class DataSourceFactoryTest extends TestCase
      */
     public function testConnect(string $driver, string $host, ?string $database, ?string $username, ?string $password)
     : void {
-        $dsFactory = new DataSourceFactory($driver, $host, $database, $username, $password);
-
+        $dsFactory = new DataSourceFactory($driver);
         $this->assertIsObject($dsFactory);
         $this->assertInstanceOf(DataSourceFactory::class, $dsFactory);
+
+        $pdo = $dsFactory->connect($host, $database, $username, $password);
+
+        $this->assertIsObject($pdo);
+        $this->assertInstanceOf(\PDO::class, $pdo);
     }
 
 }
