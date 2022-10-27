@@ -11,11 +11,12 @@ declare(strict_types=1);
  * @version 0.0.1
  */
 
-namespace Local\Test\Db;
+namespace Local\Test\Database;
 
-use Local\DataSourceFactory;
-use Local\Test\Build\Config;
+use Local\Database\DataSourceFactory;
+use Local\Services\Config;
 use Local\Test\Build\DbSetup;
+use PDO;
 use PHPUnit\Framework\TestCase;
 
 class DataSourceFactoryTest extends TestCase
@@ -41,7 +42,7 @@ class DataSourceFactoryTest extends TestCase
         $pdo = $dsFactory->connect($host, $database, $username, $password);
 
         $this->assertIsObject($pdo);
-        $this->assertInstanceOf(\PDO::class, $pdo);
+        $this->assertInstanceOf(PDO::class, $pdo);
     }
 
 }

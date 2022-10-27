@@ -13,6 +13,6 @@ declare(strict_types=1);
  * @var array $config
  */
 
-require_once realpath(dirname(__FILE__)) . '/../src/bootstrap.php';
+require_once realpath(dirname(__FILE__) . '/../src/bootstrap.php');
 
 var_dump($config);

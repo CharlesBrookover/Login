@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 /**
- * An Interface to define data entities
+ * A new PHP page
  *
- * Date: 10/16/2022
+ * Date: 10/26/2022
  *
  * @author  Charles Brookover
  * @license MIT
  * @version 0.0.1
  */
 
-namespace Local\Entities;
+namespace Local\Services;
 
-interface IEntities
+class Container
 {
 
 }

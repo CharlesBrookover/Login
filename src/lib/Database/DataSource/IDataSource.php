@@ -9,13 +9,15 @@
  * @version 0.0.1
  */
 
-namespace Local\DataSource;
+namespace Local\Database\DataSource;
+
+use PDO;
 
 interface IDataSource
 {
     public function __construct(string $host, ?string $database, ?string $username, ?string $password);
 
     public function connect()
-    : \PDO;
+    : PDO;
 
 }

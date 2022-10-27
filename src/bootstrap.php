@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * Bootstrap file
  *
@@ -11,17 +12,19 @@ declare(strict_types=1);
  * @version 0.0.1
  */
 
-defined('SRC_PATH') or define('SRC_PATH', realpath(dirname(__FILE__)));
-defined('LIBRARY_PATH') or define('LIBRARY_PATH', SRC_PATH. '/../vendor');
-defined('DB_PATH') or define('DB_PATH', SRC_PATH . '/../resources');
+use Local\Services\Config;
 
-$config = json_decode(SRC_PATH . '/../config/config.json', true);
-/*
- * if (PROD) {
- *  $prodConfig = json_decode(SRC_PATH . '/../config/config.prod.json', true);
- *  $config = array_merge_recursive( $config, $prodConfig);
- * }
- */
+defined('SRC_PATH') or define('SRC_PATH', realpath(dirname(__FILE__)));
+defined('LIBRARY_PATH') or define('LIBRARY_PATH', realpath(SRC_PATH . '/../vendor'));
+defined('DB_PATH') or define('DB_PATH', realpath(SRC_PATH . '/../resources'));
+defined('CONFIG_PATH') or define('CONFIG_PATH', realpath(SRC_PATH . '/../config'));
 
 require_once LIBRARY_PATH . '/autoload.php';
+
+$config = new Config(realpath(CONFIG_PATH . '/config.json'));
+if (getenv('SYS_PRODUCTION') === 'true') {
+    $config->merge(CONFIG_PATH . '/config.prod.json');
+}
+
+$container = new \Local\Services\Container($config);
 

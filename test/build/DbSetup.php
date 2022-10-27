@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Local\Test\Build;
 
+use Local\Services\Config;
+use SQLite3;
+
 class DbSetup
 {
 
@@ -20,7 +23,7 @@ class DbSetup
 
     public function __construct(private readonly Config $config)
     {
-        $datasources = $this->config->getConfig('datasources');
+        $datasources = $this->config->offsetGet('datasources');
         foreach ($datasources as $datasource => $details) {
             $this->datasources[$datasource] = $this->buildDatasource($datasource, $details);
         }
@@ -54,7 +57,7 @@ class DbSetup
         }
 
         // Create DB
-        $sqlite = new \SQLite3($dbFile);
+        $sqlite = new SQLite3($dbFile);
 
         // Create tables in DB
         if (!empty($sqlFile)) {

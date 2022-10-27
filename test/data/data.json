@@ -69,5 +69,9 @@
         }
       }
     }
+  },
+  "ConfigTest":            {
+    "data":  "data/dataConfig.json",
+    "merge": "data/mergeConfig.json"
   }
 }

@@ -9,15 +9,16 @@
  * @version 0.0.1
  */
 
-namespace Local;
+namespace Local\Database;
 
-use Local\DataSource\Sqlite;
+use Local\Database\DataSource\Sqlite;
+use PDO;
 
 class DataSourceFactory
 {
 
     private ?string $driver = null;
-    private \PDO    $conn;
+    private PDO     $conn;
 
     /**
      * @param string $driver
@@ -41,7 +42,7 @@ class DataSourceFactory
      * @return \PDO
      */
     public function connect(string $host, ?string $database, ?string $username, ?string $password)
-    : \PDO {
+    : PDO {
         if (empty($conn)) {
             /**
              * @todo Add other data sources
@@ -56,7 +57,7 @@ class DataSourceFactory
     }
 
     public function getPdo()
-    : \PDO
+    : PDO
     {
         return $this->conn;
     }

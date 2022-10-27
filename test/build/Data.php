@@ -24,7 +24,7 @@ class Data
         bool $useClassName = true
     ) {
         if (empty($dataFile)) {
-            $dataFile = realpath(dirname(__FILE__) . '/../config/data.json');
+            $dataFile = realpath(dirname(__FILE__) . '/../data/data.json');
         }
         if (file_exists($dataFile)) {
             $jsonData = json_decode(file_get_contents($dataFile), true);
@@ -50,8 +50,8 @@ class Data
         return $testData;
     }
 
-    public function getTestData(string $key)
+    public function getTestData(?string $key = null)
     : mixed {
-        return $this->data[$key] ?? null;
+        return isset($key) ? ($this->data[$key] ?? null) : $this->data;
     }
 }

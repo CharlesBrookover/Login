@@ -12,7 +12,7 @@ declare(strict_types=1);
  */
 
 
-use Local\Test\Build\Config;
+use Local\Services\Config;
 use Local\Test\Build\DbSetup;
 
 defined('TEST_PATH') or define('TEST_PATH', realpath(dirname(__FILE__)));
