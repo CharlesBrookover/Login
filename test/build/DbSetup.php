@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Local\Test\Build;
 
+use Local\Helpers;
 use Local\Services\Config;
 use SQLite3;
 

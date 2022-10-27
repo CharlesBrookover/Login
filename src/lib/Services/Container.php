@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Local\Services;
 
 use Local\Database\DataSourceFactory;
+use Local\Helpers;
 
 class Container
 {
@@ -27,7 +28,7 @@ class Container
         if (empty($this->pdo)) {
             $dbConfig  = $this->configuration->offsetGet('databases.main');
             $factory   = new DataSourceFactory($dbConfig['driver'] ?? '');
-            $this->pdo = $factory->connect($dbConfig['host'] ?? '',
+            $this->pdo = $factory->connect(Helpers::expandPath($dbConfig['host'] ?? ''),
                                            $dbConfig['database'] ?? null,
                                            $dbConfig['username'] ?? null,
                                            $dbConfig['password'] ?? null);

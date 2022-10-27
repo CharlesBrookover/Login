@@ -2,7 +2,7 @@
   "databases": {
     "main": {
       "driver": "sqlite",
-      "host":   "/resources/db/testLogin.db"
+      "host": "%PROJECT_PATH%/resources/db/testLogin.db"
     }
   }
 }

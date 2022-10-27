@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @version 0.0.1
  */
 
-namespace Local\Test\Build;
+namespace Local;
 
 class Helpers
 {
