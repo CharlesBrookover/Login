@@ -6,7 +6,7 @@
          bootstrap="test/bootstrap.php">
     <testsuites>
         <testsuite name="all">
-            <directory>test</directory>
+            <directory>test/tests</directory>
         </testsuite>
     </testsuites>
     <coverage>

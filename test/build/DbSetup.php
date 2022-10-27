@@ -16,15 +16,30 @@ namespace Local\Test\Build;
 class DbSetup
 {
 
-    public function __construct(array $config)
+    protected array $datasources = [];
+
+    public function __construct(private readonly Config $config)
     {
-        foreach ($config as $db => $details) {
-            switch ($db) {
+        $datasources = $this->config->getConfig('datasources');
+        foreach ($datasources as $datasource => $details) {
+            $this->datasources[$datasource] = $this->buildDatasource($datasource, $details);
+        }
+    }
+
+    public function buildDb(array $datasources)
+    : void {
+        foreach ($datasources as $datasource => $details) {
+            switch ($datasource) {
                 case 'sqlite':
                     $this->setupSqliteDb($details['file'] ?? '', $details['sqlFile'] ?? '');
                     break;
             }
         }
+    }
+
+    public function getDatasource(?string $type = null)
+    : array {
+        return empty($type) ? $this->datasources : ($this->datasources[$type] ?? []);
     }
 
     protected function setupSqliteDb(string $file, string $sqlFile)
@@ -61,4 +76,14 @@ class DbSetup
         return empty($newPath) ? $path : $newPath;
     }
 
+    protected function buildDatasource(string $driver, array $config = [])
+    : array {
+        return [
+            'driver'   => $driver,
+            'host'     => $driver === 'sqlite' ? $this->expandPath($config['file'] ?? '') : $config['host'] ?? '',
+            'database' => $config['database'] ?? null,
+            'username' => $config['username'] ?? null,
+            'password' => $config['password'] ?? null,
+        ];
+    }
 }
