@@ -32,28 +32,12 @@ class UserAuth implements IEntities
     }
 
     /**
-     * @param string $email
-     */
-    public function setEmail(string $email)
-    : void {
-        $this->email = $email;
-    }
-
-    /**
      * @return string
      */
     public function getPassword()
     : string
     {
         return $this->password;
-    }
-
-    /**
-     * @param string $password
-     */
-    public function setPassword(string $password)
-    : void {
-        $this->password = $password;
     }
 
     /**
@@ -66,28 +50,12 @@ class UserAuth implements IEntities
     }
 
     /**
-     * @param int|string|null $created
-     */
-    public function setCreated(int|string|null $created)
-    : void {
-        $this->created = $created;
-    }
-
-    /**
      * @return int|string|null
      */
     public function getLastChanged()
     : int|string|null
     {
         return $this->lastChanged;
-    }
-
-    /**
-     * @param int|string|null $lastChanged
-     */
-    public function setLastChanged(int|string|null $lastChanged)
-    : void {
-        $this->lastChanged = $lastChanged;
     }
 
     /**
@@ -99,13 +67,6 @@ class UserAuth implements IEntities
         return $this->lastLogin;
     }
 
-    /**
-     * @param int|string|null $lastLogin
-     */
-    public function setLastLogin(int|string|null $lastLogin)
-    : void {
-        $this->lastLogin = $lastLogin;
-    }
 
 
 }

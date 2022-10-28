@@ -33,28 +33,12 @@ class User implements IEntities
     }
 
     /**
-     * @param string $email
-     */
-    public function setEmail(string $email)
-    : void {
-        $this->email = $email;
-    }
-
-    /**
      * @return string
      */
     public function getFirstName()
     : string
     {
         return $this->firstName;
-    }
-
-    /**
-     * @param string $firstName
-     */
-    public function setFirstName(string $firstName)
-    : void {
-        $this->firstName = $firstName;
     }
 
     /**
@@ -67,28 +51,12 @@ class User implements IEntities
     }
 
     /**
-     * @param string $lastName
-     */
-    public function setLastName(string $lastName)
-    : void {
-        $this->lastName = $lastName;
-    }
-
-    /**
      * @return string
      */
     public function getCity()
     : string
     {
         return $this->city;
-    }
-
-    /**
-     * @param string $city
-     */
-    public function setCity(string $city)
-    : void {
-        $this->city = $city;
     }
 
     /**
@@ -101,28 +69,12 @@ class User implements IEntities
     }
 
     /**
-     * @param int $age
-     */
-    public function setAge(int $age)
-    : void {
-        $this->age = $age;
-    }
-
-    /**
      * @return int|string|null
      */
     public function getInserted()
     : int|string|null
     {
         return $this->inserted;
-    }
-
-    /**
-     * @param int|string|null $inserted
-     */
-    public function setInserted(int|string|null $inserted)
-    : void {
-        $this->inserted = $inserted;
     }
 
     /**
@@ -133,14 +85,5 @@ class User implements IEntities
     {
         return $this->updated;
     }
-
-    /**
-     * @param int|string|null $updated
-     */
-    public function setUpdated(int|string|null $updated)
-    : void {
-        $this->updated = $updated;
-    }
-
 
 }
